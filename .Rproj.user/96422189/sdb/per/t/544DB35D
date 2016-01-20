@@ -1,0 +1,17 @@
+{
+    "contents" : "## The two functions below, makeCacheMatrix, and cacheSolve, reduce the high \n## computational costs associated with computing the inverse of a matrix by \n## retreiving previously calculated matrix inverses from a cache. \n\n\n## makeCacheMatrix creates a \"matrix\" object, which is really a list of\n## functions, that, when called can calculate and cache it's inverse. \n\nmakeCacheMatrix <- function(x = matrix()) {\n    m <- NULL\n    set <- function(y) {\n        x <<- y\n        m <<- NULL\n    }\n    get <- function() x\n    setsolve <- function(solve) m <<- solve\n    getsolve <- function() m\n    list(set = set, get = get,\n         setsolve = setsolve,\n         getsolve = getsolve)\n}\n\n\n## cacheSolve first checks to see if the inverse for the given matrix has\n## already been calculated and cached. If it has been, the result is printed. if\n## the inverse is yet to be computed, cacheSolve computes the inverse, caches it\n## and prints the result.\n\ncacheSolve <- function(x, ...) {\n    m <- x$getsolve()\n    if(!is.null(m)) {\n        message(\"getting cached data\")\n        return(m)\n    }\n    data <- x$get()\n    m <- solve(data, ...)\n    x$setsolve(m)\n    m           ## Return a matrix that is the inverse of 'x'\n        \n}\n",
+    "created" : 1453324119500.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3854398523",
+    "id" : "544DB35D",
+    "lastKnownWriteTime" : 1453324028,
+    "path" : "~/Coursera/R Programming/Week 3/ProgrammingAssignment2/cachematrix.R",
+    "project_path" : "cachematrix.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
